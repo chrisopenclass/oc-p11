@@ -74,6 +74,3 @@ def createapp(config):
     def logout():
         return redirect(url_for("index"))
     return app
-
-
-app = createapp({})
