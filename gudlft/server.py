@@ -28,8 +28,12 @@ def index():
 
 @app.route("/showSummary", methods=["POST"])
 def showSummary():
-    club = [club for club in clubs if club["email"] == request.form["email"]][0]
-    return render_template("welcome.html", club=club, competitions=competitions)
+    mail = request.form["email"]
+    for club in clubs:
+        if mail == club["email"]:
+            return render_template("welcome.html", club=club, competitions=competitions)
+    flash("l'email est invalide")
+    return redirect(url_for("index"))
 
 
 @app.route("/book/<competition>/<club>")
