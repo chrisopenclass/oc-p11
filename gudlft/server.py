@@ -65,7 +65,7 @@ def createapp(config):
             return render_template("welcome.html", club=club, competitions=competitions)
         club['points'] = int(club['points']) - placesRequired
         competition["numberOfPlaces"] = int(competition["numberOfPlaces"]) - placesRequired
-        flash("Great-booking complete!")
+        flash(f'Great-booking complete! you just bought {request.form["places"]}')
         return render_template("welcome.html", club=club, competitions=competitions)
 
     # TODO: Add route for points display
