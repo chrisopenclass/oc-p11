@@ -1,0 +1,15 @@
+	{% block title %}Summary | GUDLFT Clubs{% endblock %}
+
+	{% block content %}
+	  	<h2>Clubs:</h2>
+	   	 	<ul>
+	        	{% for club in clubs%}
+	        		<li>
+	           		 	Name: {{club['name']}}<br>
+	            		Points: {{club['points']}}<br>
+	        		</li>
+	        		<hr>
+	        	{% endfor %}
+	    	</ul>
+		<a href="{{ url_for('index') }}">Registration</a>
+	{% endblock content %}
