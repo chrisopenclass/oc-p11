@@ -54,18 +54,18 @@ def createapp(config=None):
             0
         ]
         club = [c for c in clubs if c["name"] == request.form["club"]][0]
-        placesRequired = int(request.form["places"])
+        placesRequired = int(request.form["places"]) * 3
         if placesRequired > int(club['points']):
             flash("you can't buy more places than your avalaible places !")
             return render_template("welcome.html", club=club, competitions=competitions)
-        if placesRequired > 12:
+        if placesRequired / 3 > 12:
             flash("you can't buy more than 12 places!")
             return render_template("welcome.html", club=club, competitions=competitions)
-        if placesRequired > int(competition["numberOfPlaces"]):
+        if placesRequired / 3 > int(competition["numberOfPlaces"]):
             flash("your trying to buy more places than avalaible places  !")
             return render_template("welcome.html", club=club, competitions=competitions)
         club['points'] = int(club['points']) - placesRequired
-        competition["numberOfPlaces"] = int(competition["numberOfPlaces"]) - placesRequired
+        competition["numberOfPlaces"] = int(competition["numberOfPlaces"]) - placesRequired / 3
         flash(f'Great-booking complete! you just bought {request.form["places"]}')
         return render_template("welcome.html", club=club, competitions=competitions)
 
