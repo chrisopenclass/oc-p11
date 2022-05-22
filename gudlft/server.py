@@ -14,9 +14,10 @@ def loadCompetitions():
         return listOfCompetitions
 
 
-def createapp(config):
+def createapp(config=None):
     app = Flask(__name__)
-    app.config.from_object(config)
+    if config is not None:
+        app.config.from_object(config)
     app.secret_key = "something_special"
 
     competitions = loadCompetitions()
